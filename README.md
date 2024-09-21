@@ -120,7 +120,7 @@ Run:
 ```bash
 source ~/.bashrc
 ```
-### 4. **Installing Pytorch and Torchvision**
+### 5. **Installing Pytorch and Torchvision**
 **Uninstall any existing torch and torchvision**
 ```bash
 pip uninstall torch
@@ -184,124 +184,65 @@ print(torch.cuda.device_count())
 ```
 If it returns `1`, everything has been installed correctly.
 
-#### **Enable Swap Memory (Optional but Recommended)**
+### 6. **Enable Swap Memory (Optional but Recommended)**
 ```bash
 sudo fallocate -l 4G /mnt/4GB.swap
 sudo chmod 600 /mnt/4GB.swap
 sudo mkswap /mnt/4GB.swap
 sudo swapon /mnt/4GB.swap
 ```
-To make this permanent, add it to `/etc/fstab`:
+**To make this permanent, add it to `/etc/fstab`**
 ```bash
 sudo bash -c 'echo "/mnt/4GB.swap swap swap defaults 0 0" >> /etc/fstab'
 ```
-
-### 2. **Install Dependencies**
-#### **Install Python3 and Pip**
-Verify Python is installed (Jetson Nano comes with Python 3.6+):
+**Verify**
 ```bash
-python3 --version
+cat /etc/fstab
 ```
-If Python3 is installed, install pip:
+**Verify Swap is Active**:
 ```bash
-sudo apt install python3-pip
+sudo swapon --show
 ```
-
-#### **Install Required Packages**
-Install common libraries required by YOLOv5:
+**Reboot (Optional)**:
 ```bash
-sudo apt install git wget curl
-sudo apt-get install libopencv-dev python3-opencv
-sudo apt-get install python3-matplotlib
-sudo apt-get install python3-numpy python3-pillow
-sudo apt-get install libatlas-base-dev gfortran
-sudo apt-get install python3-scipy
+sudo reboot
+```
+**Verify Swap again**:
+```bash
+sudo swapon --show
 ```
 
-### 3. **Create a Python Virtual Environment**
-Create a virtual environment to isolate the YOLOv5 installation:
+### 7. Install Required Packages
+**Clone the YOLOv5 Repository**
 ```bash
-sudo apt-get install python3-venv
-python3 -m venv yolov5-env
-source yolov5-env/bin/activate
+git clone https://github.com/ultralytics/yolov5.git
+cd yolov5
+```
+**Install Dependencies**:
+```bash
+pip install -r requirements.txt
 ```
 
-### 4. **Install PyTorch for Jetson Nano**
-YOLOv5 relies on PyTorch, but you need to install a version compatible with the Jetson Nano.
-
-#### **Install PyTorch and TorchVision**
-Download and install PyTorch for Jetson Nano from the official NVIDIA sources:
-```bash
-pip install --upgrade pip
-sudo apt-get install python3-pytest
-pip install torch torchvision -f https://nvidia.box.com/shared/static/oh0jp5w4lf17a3zwi2c74mr4x2l3lg53.whl
-```
-Here’s a detailed step-by-step guide to upgrade Python and install YOLOv5 on your Jetson Nano:
-
-### 5. **Check Current Python Version**
-#### **Open a terminal and check your current Python version**
-```bash
-python3 --version
-```
-If it shows 3.6.9, you need to upgrade.
-
-#### Upgrade Python
-#### **Update Package List**:
-   ```bash
-   sudo apt update
-   ```
-#### **Install Prerequisites**:
-   ```bash
-   sudo apt install software-properties-common
-   ```
-#### **Add the Deadsnakes PPA** (to get the latest Python versions):
-   ```bash
-   sudo add-apt-repository ppa:deadsnakes/ppa
-   ```
-#### **Install a Newer Python Version** (e.g., Python 3.8):
-   ```bash
-   sudo apt update
-   sudo apt install python3.8 python3.8-venv python3.8-dev
-   ```
-#### Verify Installation
-Check if the new version is installed:
-```bash
-python3.8 --version
-```
-### 6. **Create a Virtual Environment**
-#### **Create a New Virtual Environment**
-   ```bash
-   python3.8 -m venv yolov5-env
-   ```
-#### **Activate the Virtual Environment**
-   ```bash
-   source yolov5-env/bin/activate
-   ```
-### 7. **Upgrade `pip`**
-Upgrade `pip` to the latest version:
-```bash
-pip install --upgrade pip
-```
-### 8. Install Required Packages
-#### **Clone the YOLOv5 Repository**
-   ```bash
-   git clone https://github.com/ultralytics/yolov5.git
-   cd yolov5
-   ```
-#### **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-### 9. Run YOLOv5
-You can now run YOLOv5 commands. For example, to test with a sample image:
+### 8. **Run YOLOv5**
 ```bash
 python detect.py --source data/images/bus.jpg
 ```
 ![bus](https://github.com/user-attachments/assets/aba2cacc-5077-4cf2-931f-ae5d4f3acfd0)
 
-### 9. Deactivate the Virtual Environment
+### 9. **Optional: Enable GPU for YOLOv5**
+```bash
+python detect.py --source data/images/bus.jpg --weights yolov5s.pt --device 0
+```
+
+### 10. **Testing on Jetson Nano Camera**
+You can test the live camera feed using:
+```bash
+python detect.py --source 0 --weights yolov5s.pt --device 0
+```
+This will use the onboard camera or an attached USB camera.
+
+### 11. **Deactivate the Virtual Environment**
 When you're done, you can deactivate the virtual environment:
 ```bash
 deactivate
 ```
-
