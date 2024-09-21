@@ -65,6 +65,36 @@ Now try:
 ```bash
 nvcc --version
 ```
+### 3. **Install Python 3.8**
+```bash
+sudo apt-get install python3.8 python3.8-dev python3.8-distutils python3.8-venv
+```
+**Now you have two python versions so you need to do some changes:**
+**Open the `.bashrc` file:**
+```bash
+vi ~/.bashrc
+```
+**Enter Insert Mode**
+Press `i` to enter insert mode.
+**Add the aliases at the end of the file:**
+```bash
+alias python="python3.8"
+alias python3="python3.8"
+alias pip="python3.8 -m pip"
+alias pip3="python3.8 -m pip"
+```
+**Save and Exit**
+Press `Esc`, then type `:wq` and hit `Enter` to save and exit.
+**Apply Changes**
+Run:
+```bash
+source ~/.bashrc
+```
+**Verify that the aliases are working:**
+```bash
+python --version
+```
+
 #### **Enable Swap Memory (Optional but Recommended)**
 ```bash
 sudo fallocate -l 4G /mnt/4GB.swap
