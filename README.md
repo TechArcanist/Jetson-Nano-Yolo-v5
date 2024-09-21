@@ -138,7 +138,7 @@ python detect.py --source data/images/bus.jpg
 ```
 ![bus](https://github.com/user-attachments/assets/aba2cacc-5077-4cf2-931f-ae5d4f3acfd0)
 
-### Step 8: Deactivate the Virtual Environment
+### 9. Deactivate the Virtual Environment
 When you're done, you can deactivate the virtual environment:
 ```bash
 deactivate
