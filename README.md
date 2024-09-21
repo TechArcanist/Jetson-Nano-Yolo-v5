@@ -242,6 +242,7 @@ python detect.py --source 0 --weights yolov5s.pt --device 0
 ```
 This will use the onboard camera or an attached USB camera.
 
+https://github.com/user-attachments/assets/dca4e036-a1fa-46cf-97a7-c98905676f09
 
 ### 11. **Deactivate the Virtual Environment**
 When you're done, you can deactivate the virtual environment:
