@@ -1,6 +1,5 @@
-# Jetson-Nano-Yolo-v5
-
-> **Note:** This project is currently a work in progress as I continue to learn and develop it. Until this note is removed, all data below or within this repository should be considered incomplete and not intended for use.
+# Jetson-Nano-Yolo-v5-SETUP
+> **Stuck? Here’s the Ultimate Guide to Setting Up YOLOv5 on Jetson Nano with GPU Acceleration!**
 
 Installing YOLOv5 on Jetson Nano involves several steps including setting up a Python environment and installing necessary dependencies. I'll guide you through everything from the beginning.
 
@@ -18,6 +17,16 @@ To ensure your Jetson Nano is updated and that you have enough space for install
 #### **Verify JetPack Version**
 ```bash
 dpkg-query --show nvidia-jetpack
+```
+The output should show the installed JetPack version, such as:
+```
+nvidia-jetpack 4.6
+```
+If you don't receive this ouput than fllow the below steps
+```bash
+sudo apt remove nvidia-container-csv-tensorrt
+sudo apt install nvidia-container-csv-tensorrt=8.2
+sudo apt install nvidia-jetpack
 ```
 The output should show the installed JetPack version, such as:
 ```
