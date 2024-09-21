@@ -233,6 +233,7 @@ python detect.py --source data/images/bus.jpg
 ```bash
 python detect.py --source data/images/bus.jpg --weights yolov5s.pt --device 0
 ```
+![bus](https://github.com/user-attachments/assets/f0d39ec8-1df1-4483-99c8-f2ee99e31fb3)
 
 ### 10. **Testing on Jetson Nano Camera**
 You can test the live camera feed using:
@@ -240,6 +241,7 @@ You can test the live camera feed using:
 python detect.py --source 0 --weights yolov5s.pt --device 0
 ```
 This will use the onboard camera or an attached USB camera.
+
 
 ### 11. **Deactivate the Virtual Environment**
 When you're done, you can deactivate the virtual environment:
