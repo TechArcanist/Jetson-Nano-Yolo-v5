@@ -31,6 +31,7 @@ The output should show the installed JetPack version, such as:
 ```
 nvidia-jetpack 4.6
 ```
+
 ### 2. **Check CUDA and cuDNN Versions: To verify the installed versions of CUDA and cuDNN**
 ```bash
 nvcc --version
@@ -65,6 +66,7 @@ Now try:
 ```bash
 nvcc --version
 ```
+
 ### 3. **Install Python 3.8**
 ```bash
 sudo apt-get install python3.8 python3.8-dev python3.8-distutils python3.8-venv
@@ -94,6 +96,93 @@ source ~/.bashrc
 ```bash
 python --version
 ```
+### 4.**Create a Python 3.8 Virtual Environment**
+**Open Terminal**
+Make sure you're in your root folder.
+**Create the Virtual Environment**
+```bash
+vi ~/.bashrc
+```
+**Enter Insert Mode**
+Press `i` to enter insert mode.
+**Edit `.bashrc`**: Open your `.bashrc` file for editing at the end:
+```bash
+nano ~/.bashrc
+```
+**Add the Activation Command**: Scroll to the end of the file and add the following line:
+```bash
+source ~/techarcanist/bin/activate
+```
+**Save and Exit**
+Press `Esc`, then type `:wq` and hit `Enter` to save and exit.
+**Apply Changes**
+Run:
+```bash
+source ~/.bashrc
+```
+### 4. **Installing Pytorch and Torchvision**
+**Uninstall any existing torch and torchvision**
+```bash
+pip uninstall torch
+pip uninstall torchvision
+```
+**First Install these**
+It looks like there are several errors occurring during the installation process of `torch` and `torchvision`, specifically related to the dependencies for Pillow and NumPy. Here’s a breakdown of the issues and how to address them:
+```bash
+sudo apt-get install libjpeg-dev zlib1g-dev
+
+python3.8 -m pip install cython
+
+python3.8 -m pip install wheel
+
+pip3 install numpy --upgrade --no-build-isolation
+
+pip3 install cython
+
+pip install --upgrade pip
+
+pip install numpy --no-build-isolation
+
+pip install --upgrade setuptools wheel
+
+sudo apt install libopenmpi-dev
+
+sudo apt install libomp5
+
+sudo apt install mlocate
+
+sudo updatedb
+
+sudo apt install libopenblas-base
+
+locate libopenblas.so
+
+sudo apt update
+```
+**Download these two Python 3.8 compiled torch 1.11.0 and the matching torchvision 0.12.0 wheels specifically for the Jetson nano.**
+[Download](https://drive.google.com/drive/folders/16_O-2jODtNIrFGr5IJP-5sYP6MWGYazX?usp=drive_link) 
+**Move to that directory where the file has downloaded, in my case it was at Downloads**
+```bash
+cd ~/Downloads
+```
+**Install the Packages**
+```bash
+python -m pip install torch-*.whl torchvision-*.whl
+```
+**Verify the Installation**
+Enter the Python shell:
+```bash
+python
+```
+**Import the `torch` package**
+```python
+import torch
+```
+**Check if the CUDA GPU is recognized**
+```python
+print(torch.cuda.device_count())
+```
+If it returns `1`, everything has been installed correctly.
 
 #### **Enable Swap Memory (Optional but Recommended)**
 ```bash
