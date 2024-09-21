@@ -4,7 +4,6 @@
 Installing YOLOv5 on Jetson Nano involves several steps including setting up a Python environment and installing necessary dependencies. I'll guide you through everything from the beginning.
 
 ### 1. **Preparing Jetson Nano**
-
 #### **Update and Upgrade System Packages**
 Open the terminal on Jetson Nano and run:
 ```bash
@@ -22,7 +21,7 @@ The output should show the installed JetPack version, such as:
 ```
 nvidia-jetpack 4.6
 ```
-If you don't receive this ouput than fllow the below steps
+**If you don’t receive this output, please follow the steps below:**
 ```bash
 sudo apt remove nvidia-container-csv-tensorrt
 sudo apt install nvidia-container-csv-tensorrt=8.2
@@ -31,6 +30,40 @@ sudo apt install nvidia-jetpack
 The output should show the installed JetPack version, such as:
 ```
 nvidia-jetpack 4.6
+```
+### 2. **Check CUDA and cuDNN Versions: To verify the installed versions of CUDA and cuDNN**
+```bash
+nvcc --version
+```
+**If there any kind of error, please follow the steps below:** 
+Check if CUDA is installed:
+```bash
+ls /usr/local | grep cuda
+```
+You should see directories like cuda-<version> if it’s installed.Now follow the steps below:
+### Run:
+```bash
+vi ~/.bashrc
+```
+### Enter Insert Mode
+Press `i` to enter insert mode.
+### Add CUDA to PATH
+Add the following lines at the end of the file:
+```bash
+export PATH=/usr/local/cuda-10.2/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64:$LD_LIBRARY_PATH
+```
+### Save and Exit
+Press `Esc`, then type `:wq` and hit `Enter` to save and exit.
+### Apply Changes
+Run:
+```bash
+source ~/.bashrc
+```
+### Check nvcc Version Again
+Now try:
+```bash
+nvcc --version
 ```
 #### **Enable Swap Memory (Optional but Recommended)**
 ```bash
