@@ -99,6 +99,23 @@ source ~/.bashrc
 ```bash
 python --version
 ```
+** Install pip**
+Update Package List: First, make sure your package list is updated.
+
+```bash
+sudo apt update
+```
+Install pip: You can install pip for Python 3 using the following command:
+
+```bash
+sudo apt install python3-pip
+```
+Verify Installation: After the installation, you can verify that pip is installed correctly by checking its version:
+
+```bash
+pip3 --version
+```
+
 ### 4.**Create a Python 3.8 Virtual Environment**
 **Open Terminal**
 Make sure you're in your root folder.
